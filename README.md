@@ -1,2 +1,2 @@
 # Animations
-Collection of my animations for RGB cube
+Collection of my animations for RGB cube using USCL
