@@ -61,7 +61,7 @@ float animtime = 60000; // duration of animations
 // 4x4x4 LED - max MODULATION_BIT_DEPTH = 5 (recommended = 4 )
 // 8x8x8 LED - max MODULATION_BIT_DEPTH = 4 (recommended = 3 )
 // SPI_speed - any, it is always same speed --> SLOW
-// NOTE: Best for smaller ones, HUGE storage space for placing anymations, but low BAM bit depth. Maybe can be combined with Wifi stuff. 
+// NOTE: Best for smaller ones, HUGE storage space for placing anymations, but low BAM bit depth. Maybe can be combined with Wifi stuff.
 // NOTE 2: Still under testing, Wemos D1 mini reset itself every few seconds. Not really tried on real cube. I was just looking timing on OE pin, and it looks OK.
 //USCL cube(4, 4, 4, RGB_CUBE , D3, D2,  60 , 3, SPI_speed_64); // uncomment this if you are building for Wemos D1 mini
 
@@ -117,7 +117,8 @@ float animtime = 60000; // duration of animations
 // NOTE 3:
 //USCL cube(8, 8, 8, RGB_CUBE , PA0, PA1,  60 , 4, SPI_speed_4); // My DIY prototype - Dec 2018
 //USCL cube(4, 4, 4, RGB_CUBE , PA0, PA1,  60 , 7, SPI_speed_2); // My DIY prototype - April 2019
-USCL cube(4, 4, 4, RGB_CUBE , PA0, PA1,  60 , 6, SPI_speed_16); // My SEEED cube V1 
+//USCL cube(4, 4, 4, RGB_CUBE , PA0, PA1,  60 , 7, SPI_speed_16); // My SEEED cube V1
+USCL cube(4, 4, 8, RGB_CUBE , PA0, PA1,  60 , 6, SPI_speed_16); // My SEEED cube V2
 //
 /*
 
@@ -158,7 +159,7 @@ void plasma6(float time, USCL & cube, uint16_t shiftDelay)
   byte cubesizex = cube.getCubeSizeX();
   byte cubesizey = cube.getCubeSizeY();
   byte cubesizez = cube.getCubeSizeZ();
-  
+
   int max_brightness = cube.getMaxBrightness();
   int maxVoxelValue = cubesizez - 1;
   int FPS = cube.getFPS() ;
@@ -240,7 +241,7 @@ void plasma6(float time, USCL & cube, uint16_t shiftDelay)
           plasma =  (180.0 + 60.0 * (fx + fz + fy) ); // *max=3
 
           hue = int(plasma ) ;
-          V =   0.5 + 0.5 * sin(2.0 * PI * ((fxV + fzV +  fyV)/3) ) ;
+          V =   0.5 + 0.5 * sin(2.0 * PI * ((fxV + fzV +  fyV) / 3) ) ;
           cube.HSV( z, x, y, hue   , 1.0, V);
 
         }//  y
@@ -320,7 +321,7 @@ void rotating_circles(float time, USCL & cube, unsigned int drawDelay)
   byte cubesizex = cube.getCubeSizeX();
   byte cubesizey = cube.getCubeSizeY();
   byte cubesizez = cube.getCubeSizeZ();
-  
+
   int max_brightness = cube.getMaxBrightness();
   //  int maxVoxelValue = cubesize - 1;
   int FPS = cube.getFPS() ;
@@ -508,7 +509,7 @@ void rotating_star(float time, USCL & cube, unsigned int drawDelay)
   byte cubesizex = cube.getCubeSizeX();
   byte cubesizey = cube.getCubeSizeY();
   byte cubesizez = cube.getCubeSizeZ();
-  
+
   int max_brightness = cube.getMaxBrightness();
   int FPS = cube.getFPS() / 2;
   int delay_FPS = 1000 / FPS;
@@ -672,7 +673,7 @@ void rotating_cube(float time, USCL & cube, unsigned int drawDelay)
   byte cubesizex = cube.getCubeSizeX();
   byte cubesizey = cube.getCubeSizeY();
   byte cubesizez = cube.getCubeSizeZ();
-  
+
   int FPS = cube.getFPS() / 2;
   int delay_FPS = 1000 / FPS;
   int max_brightness = cube.getMaxBrightness();
@@ -917,7 +918,7 @@ void plasma_sinx2y2(float time, USCL & cube, uint16_t shiftDelay /* = 75 */)
   byte cubesizex = cube.getCubeSizeX();
   byte cubesizey = cube.getCubeSizeY();
   byte cubesizez = cube.getCubeSizeZ();
-  
+
   int FPS = cube.getFPS() / 2;
   int delay_FPS = 1000 / FPS;
   int max_brightness = cube.getMaxBrightness();
@@ -1047,7 +1048,7 @@ void plasma_sineWave(float time, USCL & cube, uint16_t shiftDelay /* = 75 */, ui
   byte cubesizex = cube.getCubeSizeX();
   byte cubesizey = cube.getCubeSizeY();
   byte cubesizez = cube.getCubeSizeZ();
-  
+
   int FPS = cube.getFPS() / 2;
   int delay_FPS = 1000 / FPS;
   int max_brightness = cube.getMaxBrightness();
@@ -1191,7 +1192,7 @@ void plasma5(float time, USCL & cube, uint16_t shiftDelay)
   byte cubesizex = cube.getCubeSizeX();
   byte cubesizey = cube.getCubeSizeY();
   byte cubesizez = cube.getCubeSizeZ();
-  
+
   int FPS = cube.getFPS() / 2;
   int delay_FPS = 1000 / FPS;
   int max_brightness = cube.getMaxBrightness();
@@ -1315,7 +1316,7 @@ void plasma4(float time, USCL & cube, uint16_t shiftDelay)
   byte cubesizex = cube.getCubeSizeX();
   byte cubesizey = cube.getCubeSizeY();
   byte cubesizez = cube.getCubeSizeZ();
-  
+
   int FPS = cube.getFPS() / 2;
   int delay_FPS = 1000 / FPS;
   int max_brightness = cube.getMaxBrightness();
@@ -1429,7 +1430,7 @@ void RandomLedFade(float time, USCL & cube, unsigned char numberOfVoxels, unsign
   byte cubesizex = cube.getCubeSizeX();
   byte cubesizey = cube.getCubeSizeY();
   byte cubesizez = cube.getCubeSizeZ();
-  
+
   int FPS = cube.getFPS() / 2;
   int delay_FPS = 1000 / FPS;
   int max_brightness = cube.getMaxBrightness();
@@ -1525,7 +1526,7 @@ void color_wheelTWO(float time, USCL & cube, uint16_t shiftDelay /* = 75 */)
   byte cubesizex = cube.getCubeSizeX();
   byte cubesizey = cube.getCubeSizeY();
   byte cubesizez = cube.getCubeSizeZ();
-  
+
   int FPS = cube.getFPS() / 2;
   int delay_FPS = 1000 / FPS;
   int max_brightness = cube.getMaxBrightness();
@@ -1643,7 +1644,7 @@ void sineWaveThree(float time, USCL & cube, uint16_t shiftDelay /* = 75 */, uint
   byte cubesizex = cube.getCubeSizeX();
   byte cubesizey = cube.getCubeSizeY();
   byte cubesizez = cube.getCubeSizeZ();
-  
+
   int FPS = cube.getFPS() / 2;
   int delay_FPS = 1000 / FPS;
   int max_brightness = cube.getMaxBrightness();
@@ -1717,7 +1718,7 @@ void sineWave(float time, USCL & cube, uint16_t shiftDelay /* = 75 */, uint8_t p
   byte cubesizex = cube.getCubeSizeX();
   byte cubesizey = cube.getCubeSizeY();
   byte cubesizez = cube.getCubeSizeZ();
-  
+
   int FPS = cube.getFPS() / 2;
   int delay_FPS = 1000 / FPS;
   int max_brightness = cube.getMaxBrightness();
@@ -1788,7 +1789,7 @@ void sineWaveTwo(float time, USCL & cube, uint16_t shiftDelay /* = 75 */, uint8_
   byte cubesizex = cube.getCubeSizeX();
   byte cubesizey = cube.getCubeSizeY();
   byte cubesizez = cube.getCubeSizeZ();
-  
+
   int FPS = cube.getFPS() / 2;
   int delay_FPS = 1000 / FPS;
   int max_brightness = cube.getMaxBrightness();
@@ -1875,7 +1876,7 @@ void snake(float time, USCL & cube, int shiftDelay, uint16_t iterations,  unsign
   byte cubesizex = cube.getCubeSizeX();
   byte cubesizey = cube.getCubeSizeY();
   byte cubesizez = cube.getCubeSizeZ();
-  
+
   int FPS = cube.getFPS() / 2;
   int delay_FPS = 1000 / FPS;
   int max_brightness = cube.getMaxBrightness();
@@ -2262,7 +2263,7 @@ void plasma3(float time, USCL & cube, int shiftDelay)
   byte cubesizex = cube.getCubeSizeX();
   byte cubesizey = cube.getCubeSizeY();
   byte cubesizez = cube.getCubeSizeZ();
-  
+
   int FPS = cube.getFPS() / 2;
   int delay_FPS = 1000 / FPS;
   int max_brightness = cube.getMaxBrightness();
@@ -2405,7 +2406,7 @@ void    wipeout(float time, USCL & cube, unsigned int drawDelay)
   byte cubesizex = cube.getCubeSizeX();
   byte cubesizey = cube.getCubeSizeY();
   byte cubesizez = cube.getCubeSizeZ();
-  
+
   int FPS = cube.getFPS() / 2;
   int delay_FPS = 1000 / FPS;
   int max_brightness = cube.getMaxBrightness();
@@ -2553,7 +2554,7 @@ void MY_4D_function2(float time, USCL & cube, int shiftDelay)
   byte cubesizex = cube.getCubeSizeX();
   byte cubesizey = cube.getCubeSizeY();
   byte cubesizez = cube.getCubeSizeZ();
-  
+
   int FPS = cube.getFPS() / 2;
   int delay_FPS = 1000 / FPS;
   int max_brightness = cube.getMaxBrightness();
@@ -2633,7 +2634,7 @@ void MY_4D_function1 (float time, USCL & cube, uint16_t shiftDelay)
   byte cubesizex = cube.getCubeSizeX();
   byte cubesizey = cube.getCubeSizeY();
   byte cubesizez = cube.getCubeSizeZ();
-  
+
   int FPS = cube.getFPS() / 2;
   int delay_FPS = 1000 / FPS;
   int max_brightness = cube.getMaxBrightness();
@@ -2711,7 +2712,7 @@ void sinx2y2(float time, USCL & cube, uint16_t shiftDelay /* = 75 */)
   byte cubesizex = cube.getCubeSizeX();
   byte cubesizey = cube.getCubeSizeY();
   byte cubesizez = cube.getCubeSizeZ();
-  
+
   int FPS = cube.getFPS() / 2;
   int delay_FPS = 1000 / FPS;
   int max_brightness = cube.getMaxBrightness();
@@ -2779,7 +2780,7 @@ void slantingLines(float time, USCL & cube, uint16_t shiftDelay /* = 75 */, bool
   byte cubesizex = cube.getCubeSizeX();
   byte cubesizey = cube.getCubeSizeY();
   byte cubesizez = cube.getCubeSizeZ();
-  
+
   int FPS = cube.getFPS() / 2;
   int delay_FPS = 1000 / FPS;
   int max_brightness = cube.getMaxBrightness();
@@ -2876,7 +2877,7 @@ void fireworks(float time, USCL & cube,  int n, int shiftDelay)
   byte cubesizex = cube.getCubeSizeX();
   byte cubesizey = cube.getCubeSizeY();
   byte cubesizez = cube.getCubeSizeZ();
-  
+
   int FPS = cube.getFPS() / 2;
   int delay_FPS = 1000 / FPS;
   int max_brightness = cube.getMaxBrightness();
@@ -3037,7 +3038,7 @@ void cornerCube(float time, USCL & cube, uint16_t resizeDelay /* =75 */, uint8_t
   byte cubesizex = cube.getCubeSizeX();
   byte cubesizey = cube.getCubeSizeY();
   byte cubesizez = cube.getCubeSizeZ();
-  
+
   int FPS = cube.getFPS() / 2;
   int delay_FPS = 1000 / FPS;
   uint8_t cubeSize = cube.getCubeSizeZ() - 1;
@@ -3129,7 +3130,7 @@ void plasma2(float time, USCL & cube, int shiftDelay)
   byte cubesizex = cube.getCubeSizeX();
   byte cubesizey = cube.getCubeSizeY();
   byte cubesizez = cube.getCubeSizeZ();
-  
+
   int FPS = cube.getFPS() / 2;
   int delay_FPS = 1000 / FPS;
   int max_brightness = cube.getMaxBrightness();
@@ -3278,7 +3279,7 @@ void rain(float time, USCL & cube, int rainVoxels /* = 2 */, int floorVoxels /* 
   byte cubesizex = cube.getCubeSizeX();
   byte cubesizey = cube.getCubeSizeY();
   byte cubesizez = cube.getCubeSizeZ();
-  
+
   int FPS = cube.getFPS() / 2;
   int delay_FPS = 1000 / FPS;
   int max_brightness = cube.getMaxBrightness();
@@ -3412,7 +3413,7 @@ void explodingimplodingsphere(float time, USCL & cube, uint16_t shiftDelay /* = 
   byte cubesizex = cube.getCubeSizeX();
   byte cubesizey = cube.getCubeSizeY();
   byte cubesizez = cube.getCubeSizeZ();
-  
+
   int FPS = cube.getFPS() / 2;
   int delay_FPS = 1000 / FPS;
   int max_brightness = cube.getMaxBrightness();
@@ -3604,7 +3605,7 @@ void explodingsphere(float time, USCL & cube, uint16_t shiftDelay /* = 75 */)
   byte cubesizex = cube.getCubeSizeX();
   byte cubesizey = cube.getCubeSizeY();
   byte cubesizez = cube.getCubeSizeZ();
-  
+
   int FPS = cube.getFPS() / 2;
   int delay_FPS = 1000 / FPS;
   int max_brightness = cube.getMaxBrightness();
@@ -3704,7 +3705,7 @@ void folder(float time, USCL & cube, uint16_t shiftDelay)
   byte cubesizex = cube.getCubeSizeX();
   byte cubesizey = cube.getCubeSizeY();
   byte cubesizez = cube.getCubeSizeZ();
-  
+
   int FPS = cube.getFPS() / 2;
   int delay_FPS = 1000 / FPS;
   int max_brightness = cube.getMaxBrightness();
@@ -3926,7 +3927,7 @@ void starfield(float time, USCL & cube, uint8_t stars,  uint16_t shiftDelay)
   byte cubesizex = cube.getCubeSizeX();
   byte cubesizey = cube.getCubeSizeY();
   byte cubesizez = cube.getCubeSizeZ();
-  
+
   int FPS = cube.getFPS() / 2;
   int delay_FPS = 1000 / FPS;
   int max_brightness = cube.getMaxBrightness();
@@ -4023,7 +4024,7 @@ void plasma1(float time, USCL & cube, uint16_t shiftDelay)
   byte cubesizex = cube.getCubeSizeX();
   byte cubesizey = cube.getCubeSizeY();
   byte cubesizez = cube.getCubeSizeZ();
-  
+
   int FPS = cube.getFPS() / 2;
   int delay_FPS = 1000 / FPS;
   int max_brightness = cube.getMaxBrightness();
@@ -4144,7 +4145,7 @@ void test (float time, USCL & cube, uint16_t shiftDelay)
   byte cubesizex = cube.getCubeSizeX();
   byte cubesizey = cube.getCubeSizeY();
   byte cubesizez = cube.getCubeSizeZ();
-  
+
   int FPS = cube.getFPS() / 2;
   int delay_FPS = 1000 / FPS;
   float max_brightness = cube.getMaxBrightness();
@@ -4205,7 +4206,7 @@ void HSV_test (float time, USCL & cube, uint16_t shiftDelay)
   byte cubesizex = cube.getCubeSizeX();
   byte cubesizey = cube.getCubeSizeY();
   byte cubesizez = cube.getCubeSizeZ();
-  
+
   int FPS = cube.getFPS() / 2;
   int delay_FPS = 1000 / FPS;
   float max_brightness = cube.getMaxBrightness();
@@ -4310,7 +4311,11 @@ void loop()
   fireworks(animtime , cube, j * cubesize , 2 * delay_FPS); // animation time lenght, cube, number of particles, delay time
   cornerCube(animtime, cube, 3 * delay_FPS, 1); // animation time lenght, cube, resizeDelay ; minimumCubeSize
   rain(animtime, cube , j * cubesize ,  cube.getMaxBrightness()  , 3 * delay_FPS , false ); // animation time lenght, cube, rainVoxels; floorVoxels; rainDelay; invertDirection = false/true
-  explodingsphere(animtime, cube, 3 * delay_FPS); // animation time lenght, cube, delay time
   folder(animtime, cube, 1 * delay_FPS ); // animation time lenght, cube, delay time
   starfield(animtime,  cube, cubesize * j,  3 * delay_FPS); //  animation time lenght, cube,number of stars, delay time
+
+
+  // rest of animations are for bluepill with 128k flash memory
+  explodingsphere(animtime, cube, 3 * delay_FPS); // animation time lenght, cube, delay time
+
 } // loop
