@@ -1,2 +1,3 @@
 # Animations
-Collection of my animations for RGB cube using USCL
+All animations has moved to "example" folder of USCL library:
+ - https://github.com/Bakisha/USCL
